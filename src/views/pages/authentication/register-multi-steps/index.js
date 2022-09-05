@@ -50,7 +50,7 @@ const RegisterMultiSteps = () => {
     }
   ]
 
-  const source = require('@src/assets/images/pages/create-account.svg').default
+  //const source = require('@src/assets/images/pages/create-account.svg').default
 
   return (
     <div className='auth-wrapper auth-cover'>
@@ -104,12 +104,12 @@ const RegisterMultiSteps = () => {
               </g>
             </g>
           </svg>
-          <h2 className='brand-text text-primary ms-1'>Vuexy</h2>
+          <h2 className='brand-text text-primary ms-1'>888 Staking</h2>
         </Link>
         <Col lg='3' className='d-none d-lg-flex align-items-center p-0'>
           <div className='w-100 d-lg-flex align-items-center justify-content-center'>
-            <img className='img-fluid w-100' src={source} alt='Login Cover' />
           </div>
+          {/* Login Cover Image */}
         </Col>
         <Col lg='9' className='d-flex align-items-center auth-bg px-2 px-sm-3 px-lg-5 pt-3'>
           <div className='width-700 mx-auto'>

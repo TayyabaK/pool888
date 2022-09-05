@@ -21,6 +21,9 @@ const Error = lazy(() => import('../views/pages/misc/Error'))
 const Login = lazy(() => import('../views/pages/authentication/Login'))
 const NotAuthorized = lazy(() => import('../views/pages/misc/NotAuthorized'))
 
+//const RegisterMultiSteps = lazy(() => import('../views/pages/authentication/register-multi-steps/index'))
+const Register888 = lazy(() => import('../views/pages/authentication/register-multi-steps/Register888'))
+
 const Router = () => {
   // ** Hooks
   const { layout } = useLayout()
@@ -47,6 +50,11 @@ const Router = () => {
       children: [{ path: '/login', element: <Login /> }]
     },
     {
+      path: '/register',
+      element: <BlankLayout />,
+      children: [{ path: '/register', element: <Register888 /> }]
+    },
+    {
       path: '/auth/not-auth',
       element: <BlankLayout />,
       children: [{ path: '/auth/not-auth', element: <NotAuthorized /> }]
@@ -55,7 +63,8 @@ const Router = () => {
       path: '*',
       element: <BlankLayout />,
       children: [{ path: '*', element: <Error /> }]
-    },
+    },    
+    
     ...allRoutes
   ])
 

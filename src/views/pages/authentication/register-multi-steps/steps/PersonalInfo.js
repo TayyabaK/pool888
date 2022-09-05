@@ -66,16 +66,16 @@ const PersonalInfo = ({ stepper }) => {
             <Input id='lastName' name='lastName' />
           </Col>
           <Col md='6' className='mb-1'>
+            <Label className='form-label' for='country'>
+              Country
+            </Label>
+            <Input type='number' id='country' name='country' placeholder='United Kingdom' />
+          </Col>
+          <Col md='6' className='mb-1'>
             <Label className='form-label' for='mobileNumber'>
               Mobile Number
             </Label>
             <Input type='number' id='mobileNumber' name='mobileNumber' placeholder='(472) 765-3654' />
-          </Col>
-          <Col md='6' className='mb-1'>
-            <Label className='form-label' for='pincode'>
-              PIN code
-            </Label>
-            <Input type='number' id='pincode' name='pincode' placeholder='657482' />
           </Col>
           <Col sm='12' className='mb-1'>
             <Label className='form-label' for='address'>
@@ -89,24 +89,7 @@ const PersonalInfo = ({ stepper }) => {
             />
             {errors.address && <FormFeedback>{errors.address.message}</FormFeedback>}
           </Col>
-          <Col sm={12} className='mb-1'>
-            <Label className='form-label' for='area-sector'>
-              Area, Street, Sector, Village
-            </Label>
-            <Input id='area-sector' name='area-sector' placeholder='Area, Street, Sector, Village' />
-          </Col>
-          <Col md='6' className='mb-1'>
-            <Label className='form-label' for='town-city'>
-              Town/City
-            </Label>
-            <Input id='town-city' name='town-city' placeholder='Town/City' />
-          </Col>
-          <Col md='6' className='mb-1'>
-            <Label className='form-label' for='country'>
-              Country
-            </Label>
-            <Input type='number' id='country' name='country' placeholder='United Kingdom' />
-          </Col>
+          
         </Row>
         <div className='d-flex justify-content-between mt-2'>
           <Button color='secondary' className='btn-prev' outline onClick={() => stepper.previous()}>
@@ -114,7 +97,7 @@ const PersonalInfo = ({ stepper }) => {
             <span className='align-middle d-sm-inline-block d-none'>Previous</span>
           </Button>
           <Button type='submit' color='primary' className='btn-next'>
-            <span className='align-middle d-sm-inline-block d-none'>Next</span>
+            <span className='align-middle d-sm-inline-block d-none'>Submit</span>
             <ChevronRight size={14} className='align-middle ms-sm-25 ms-0'></ChevronRight>
           </Button>
         </div>
