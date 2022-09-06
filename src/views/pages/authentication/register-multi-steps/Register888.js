@@ -12,7 +12,6 @@ import { Row, Col } from 'reactstrap'
 import { Home, User, CreditCard } from 'react-feather'
 
 // ** Steps
-import Billing from './steps/Billing'
 import PersonalInfo from './steps/PersonalInfo'
 import AccountDetails from './steps/AccountDetails'
 

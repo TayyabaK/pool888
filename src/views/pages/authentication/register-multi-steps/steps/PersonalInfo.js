@@ -1,5 +1,5 @@
 // ** React Imports
-import { Fragment } from 'react'
+import { Fragment, useState } from 'react'
 
 // ** Third Party Components
 import { useForm, Controller } from 'react-hook-form'
@@ -7,13 +7,20 @@ import { ChevronLeft, ChevronRight } from 'react-feather'
 
 // ** Reactstrap Imports
 import { Form, Label, Input, Row, Col, Button, FormFeedback } from 'reactstrap'
+import Select from "react-select"//'../../../../forms/form-elements/select'
+
+import CountryCodes from "../../../../../static_data/CountryCodes" 
+//import { data } from '../../../../tables/data-tables/data'
 
 const defaultValues = {
-  address: '',
   firstName: ''
 }
 
 const PersonalInfo = ({ stepper }) => {
+
+  const [[country, countrycode], setCountryInfo] = useState(["", ""])
+  const [isValidCountry, setIsValidCountry] = useState(false)
+
   // ** Hooks
   const {
     control,
@@ -24,12 +31,14 @@ const PersonalInfo = ({ stepper }) => {
     defaultValues
   })
 
+  const onCountryChange = (data) => {
+    setCountryInfo([data.label, data.value])
+    setIsValidCountry(true)
+  }  
+
   const onSubmit = data => {
-    if (Object.values(data).every(field => field.length > 0)) {
-      stepper.next()
-    } else {
-      for (const key in data) {
-        if (data[key].length === 0) {
+      for (const key in data) {      
+        if (data[key].length === 0) {                
           setError(key, {
             type: 'manual',
             message: `Please enter a valid ${key}`
@@ -37,7 +46,6 @@ const PersonalInfo = ({ stepper }) => {
         }
       }
     }
-  }
 
   return (
     <Fragment>
@@ -65,39 +73,44 @@ const PersonalInfo = ({ stepper }) => {
             </Label>
             <Input id='lastName' name='lastName' />
           </Col>
-          <Col md='6' className='mb-1'>
+          </Row>
+          <Row>
+          <Col md='5' className='mb-1'>
             <Label className='form-label' for='country'>
               Country
             </Label>
-            <Input type='number' id='country' name='country' placeholder='United Kingdom' />
+            <Select id="country" name="country" options={CountryCodes} onChange={onCountryChange} value={country.value} required></Select>
+            {!isValidCountry && <Label style={{color: "#E94560"}}> Please choose a country </Label>}
           </Col>
-          <Col md='6' className='mb-1'>
-            <Label className='form-label' for='mobileNumber'>
-              Mobile Number
+          <Col md='2' className='mb-1'>            
+            <Label>
+              Code
             </Label>
-            <Input type='number' id='mobileNumber' name='mobileNumber' placeholder='(472) 765-3654' />
+            <Input type='number' id='countrycode' name='countrycode' value={countrycode} disabled={true}/>
           </Col>
+          <Col md='5' className='mb-1'>            
+            <Label>
+              Mobile Number 
+            </Label>
+            <Input type='number' id='mobNumber' name='mobNumber' />
+          </Col>
+          </Row>
+          <Row>
           <Col sm='12' className='mb-1'>
             <Label className='form-label' for='address'>
               Address
             </Label>
-            <Controller
-              id='address'
-              name='address'
-              control={control}
-              render={({ field }) => <Input invalid={errors.address && true} {...field} />}
-            />
-            {errors.address && <FormFeedback>{errors.address.message}</FormFeedback>}
+             <Input type='text' id='address' name='address'/>
           </Col>
+          </Row>
           
-        </Row>
         <div className='d-flex justify-content-between mt-2'>
           <Button color='secondary' className='btn-prev' outline onClick={() => stepper.previous()}>
             <ChevronLeft size={14} className='align-middle me-sm-25 me-0'></ChevronLeft>
             <span className='align-middle d-sm-inline-block d-none'>Previous</span>
           </Button>
           <Button type='submit' color='primary' className='btn-next'>
-            <span className='align-middle d-sm-inline-block d-none'>Submit</span>
+            <span className='align-middle d-sm-inline-block d-none' disabled={!isValidCountry}>Submit</span>
             <ChevronRight size={14} className='align-middle ms-sm-25 ms-0'></ChevronRight>
           </Button>
         </div>

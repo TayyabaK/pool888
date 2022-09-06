@@ -98,7 +98,7 @@ const AccountDetails = ({ stepper }) => {
               render={({ field }) => (
                 <InputPasswordToggle
                   label='Confirm Password'
-                  htmlFor='password'
+                  htmlFor='confirmPassword'
                   className='input-group-merge'
                   invalid={errors.confirmPassword && true}
                   {...field}
